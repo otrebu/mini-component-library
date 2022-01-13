@@ -8,6 +8,9 @@ const Wrapper = styled.div`
   background-color: ${COLORS.transparentGray15};
   box-shadow: inset 0px 2px 4px ${COLORS.transparentGray35};
   border-radius: 4px;
+/* Trim off corners when progress bar is near-full. */
+/* This is essential for small and medium sizes */
+  overflow: hidden;
 
   ${props => 
     props.size === "large" ? css`padding: 4px; border-radius: 8px` : null
