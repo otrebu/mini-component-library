@@ -8,9 +8,17 @@ import { getDisplayedValue } from "./Select.helpers";
 const SelectWrapper = styled.div`
   position: relative;
   width: fit-content;
+  background-color: ${COLORS.transparentGray15};
+  border-radius: 8px;
+  padding: 12px 52px 12px 16px;
+  color: ${COLORS.gray700};
 
   &:hover {
     color: ${COLORS.black};
+  }
+
+  &:focus-within {
+    outline: 2px solid #4374cb;
   }
 `;
 
@@ -20,26 +28,25 @@ const SelectIcon = styled(Icon)`
   position: absolute;
   display: inline-block;
   color: ${COLORS.gray700};
+  pointer-events: none;
 `;
 
-const Select = styled.select`
-  appearance: none;
-  background-color: ${COLORS.transparentGray15};
-  border-radius: 8px;
-  border: none;
-  padding: 12px 52px 12px 16px;
-  color: ${COLORS.gray700};
-
+const DisplayValue = styled.div`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 1rem;
   line-height: 19px;
+`;
 
-  &:focus {
-    border: 2px solid #4374cb;
-    border-radius: 3px;
-  }
+const Select = styled.select`
+  appearance: none;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 const MySelect = ({ label, value, onChange, children }) => {
@@ -50,7 +57,8 @@ const MySelect = ({ label, value, onChange, children }) => {
       <Select value={value} onChange={onChange}>
         {children}
       </Select>
-      <SelectIcon id="chevron-down" />
+      <SelectIcon id="chevron-down" size={24} strokeWidth={1} />
+      <DisplayValue>{displayedValue}</DisplayValue>
     </SelectWrapper>
   );
 };
