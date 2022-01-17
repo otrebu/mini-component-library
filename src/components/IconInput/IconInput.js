@@ -29,8 +29,13 @@ function getInputSizing(size) {
   }
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.label`
   position: relative;
+  display: block;
+  color: ${COLORS.gray700};
+  &:hover {
+    color: ${COLORS.black};
+  }
   width: ${(props) => props.width + "px"};
 `;
 
@@ -38,8 +43,8 @@ const Input = styled.input`
   width: 100%;
   appearance: none;
   border: none;
-  color: ${COLORS.gray700};
   font-weight: 700;
+  color: inherit;
   ${(props) => getInputSizing(props.size)}
   &::placeholder {
     color: ${COLORS.gray500};
@@ -47,9 +52,6 @@ const Input = styled.input`
   }
   &:focus {
     outline-offset: 2px;
-  }
-  &:hover {
-    color: ${COLORS.black};
   }
 `;
 
@@ -70,13 +72,8 @@ const IconWrapper = styled.div`
   bottom: 0;
   left: 0;
   margin: auto;
-  color: ${COLORS.gray700};
   width: ${(props) => getIconSize(props.size) + "px"};
   height: ${(props) => getIconSize(props.size) + "px"};
-  ${Input}:hover + & {
-    color: ${COLORS.black};
-  }
-  pointer-events: none;
 `;
 
 const IconInput = ({ label, icon, width = 250, size, placeholder }) => {
